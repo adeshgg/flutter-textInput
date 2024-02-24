@@ -16,6 +16,14 @@ class _MyAppState extends State<MyApp> {
 
   TextEditingController userNameController = TextEditingController();
 
+  String userName = "";
+
+  greetUser() {
+    setState(() {
+      userName = "Hello " + userNameController.text + "!!!";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,6 +41,7 @@ class _MyAppState extends State<MyApp> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Text(userName),
                   TextField(
                     controller: userNameController,
                     decoration: InputDecoration(
@@ -41,8 +50,8 @@ class _MyAppState extends State<MyApp> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child:
-                        ElevatedButton(onPressed: () {}, child: Text("Submit")),
+                    child: ElevatedButton(
+                        onPressed: greetUser, child: Text("Submit")),
                   )
                 ],
               ),
