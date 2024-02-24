@@ -4,10 +4,18 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+
+  TextEditingController userNameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,16 +28,24 @@ class MyApp extends StatelessWidget {
             centerTitle: true,
           ),
           body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextField(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child:
-                      ElevatedButton(onPressed: () {}, child: Text("Submit")),
-                )
-              ],
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextField(
+                    controller: userNameController,
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: "Type your name..."),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child:
+                        ElevatedButton(onPressed: () {}, child: Text("Submit")),
+                  )
+                ],
+              ),
             ),
           ),
         ));
